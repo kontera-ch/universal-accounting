@@ -145,8 +145,8 @@
                         universalAccountingJSON.taxes.push({
                             externalId: tax.Steuercode + "-" + tax['Gültig ab'],
                             code: tax.Steuercode,
-                            startsAt: tax['Gültig ab'] !== '01.01.1900' ? moment(tax['Gültig ab'], 'DD.MM.YYYY').format('YYYY-MM-DD') : null,
-                            endsAt: tax['Datum bis'] !== '01.01.1900' ? moment(tax['Datum bis'], 'DD.MM.YYYY').format('YYYY-MM-DD') : null,
+                            startsAt: !['', '01.01.1900'].includes(tax['Gültig ab']) ? moment(tax['Gültig ab'], 'DD.MM.YYYY').format('YYYY-MM-DD') : null,
+                            endsAt: !['', '01.01.1900'].includes(tax['Datum bis']) ? moment(tax['Datum bis'], 'DD.MM.YYYY').format('YYYY-MM-DD') : null,
                             value: tax.Steuersatz,
                             postToAccountExternalId: tax.Gegenkonto,
                             description: tax.Steuertext
